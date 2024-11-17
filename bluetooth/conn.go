@@ -18,7 +18,7 @@ type Connection struct {
 }
 
 // Connect establishes an RFCOMM socket to the specified Bluetooth address using the specified channel.
-func (btc *Connection) Connect(remote *Address, channel int) error {
+func (btc *Connection) Connect(remote *Address, channel uint8) error {
 	if btc.fd > 0 {
 		return errors.New("already connected")
 	} else if remote == nil {

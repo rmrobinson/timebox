@@ -42,19 +42,16 @@ func (btc *Connection) Connect(remote *Address, channel int) error {
 }
 
 // Read reads data from the connection.
-// Read can be made to time out and return an error after a fixed
-// time limit; see SetDeadline and SetReadDeadline.
 func (btc *Connection) Read(b []byte) (n int, err error) {
 	return unix.Read(btc.fd, b)
 }
 
 // Write writes data to the connection.
-// Write can be made to time out and return an error after a fixed
-// time limit; see SetDeadline and SetWriteDeadline.
 func (btc *Connection) Write(b []byte) (n int, err error) {
 	return unix.Write(btc.fd, b)
 }
 
+// Close closes the connection.
 func (btc *Connection) Close() error {
 	if err := unix.Close(btc.fd); err != nil {
 		return err
@@ -63,22 +60,27 @@ func (btc *Connection) Close() error {
 	return nil
 }
 
+// LocalAddr returns the local address of the connection.
 func (btc *Connection) LocalAddr() net.Addr {
 	return btc.local
 }
 
+// RemoteAddr returns the remote address of the connection.
 func (btc *Connection) RemoteAddr() net.Addr {
 	return btc.remote
 }
 
+// SetDeadline has no effect
 func (btc *Connection) SetDeadline(t time.Time) error {
 	return nil
 }
 
+// SetReadDeadline has no effect
 func (btc *Connection) SetReadDeadline(t time.Time) error {
 	return nil
 }
 
+// SetWriteDeadline has no effect
 func (btc *Connection) SetWriteDeadline(t time.Time) error {
 	return nil
 }

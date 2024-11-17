@@ -41,6 +41,7 @@ func main() {
 
 	tbConn.SetColor(&timebox.Colour{R: 0, G: 255, B: 66})
 
+	tbConn.SetBrightness(100)
 	tbConn.SetTime(time.Now())
 	tbConn.SetTemperatureAndWeather(37, timebox.Celsius, timebox.WeatherCondition(*arg))
 
@@ -52,6 +53,8 @@ func main() {
 		tbConn.DisplayScoreboard(10, 20)
 	} else if *view == "Solid" {
 		tbConn.DisplaySolid()
+	} else if *view == "Off" {
+		tbConn.SetBrightness(0)
 	} else {
 		log.Printf("view not supported")
 	}

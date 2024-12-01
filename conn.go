@@ -122,7 +122,7 @@ func (c *Conn) SetTemperatureAndWeather(temp int, tempUnit TemperatureUnit, weat
 		return errors.New("temperature out of bounds")
 	}
 	if temp < 0 {
-		temp += 236
+		temp += 256
 	}
 
 	p := getCommandPayload(CmdSetTemperature, []byte{byte(temp), byte(weather)})
